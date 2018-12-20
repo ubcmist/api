@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions';
+import { isArray, isNumber } from 'util';
 
 //Sample BioMetric JSON
 const sampleBioData = {
@@ -16,6 +17,28 @@ const sampleMLData = {
   snapshot: [[],[],[]]
 };
 
+interface Metrics{
+  hr: Array<number>;
+  gsr: Array<number>;
+  temp: Array<number>;
+}
+
+interface BioData {
+  userid: number;
+  metrics: Metrics;
+  time:number
+}
+
+interface Response{
+  code: number;
+  body: any
+}
+
+interface dbBioData {
+  metrics: Metrics;
+  time: number;
+}
+
 //Initialize firestore
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
@@ -27,7 +50,48 @@ const db = admin.firestore();
 *   This data will be stored on the MIST database.
 */
 export const onBioStore = functions.https.onRequest((req, res) => {
-
+  let data: BioData = req.body;
+  if(data === null){
+    res.send({
+      code: 401,
+      body: 'No valid data'
+    });
+  }
+  else{
+    if(checkValidData(data)){
+      let doc = db.collection('biometrics').doc(data.userid);
+      doc.get()
+        .then((dbdoc) => {
+          if(!dbdoc.exists){
+            doc.set({metrics: data.metrics, time: data.time});
+            res.send({
+              code: 200,
+              body: "Success! Created new data!"
+            });
+          }
+          else{
+            doc.update({metrics: data.metrics, time: data.time});
+            res.send({
+              code: 201,
+              body: "Success! Updated data!"
+            });
+          }
+        })
+        .catch((err) => {
+          console.log("\nError occurred: " + err)
+          res.send({
+            code: 402,
+            body: err
+          });
+        });
+    }
+    else{
+      res.send({
+        code: 403,
+        body: "Invalid data!"
+      });
+    }
+  }
 });
 
 /*  This function is called with the **ML snapshot** in JSON format as an
@@ -64,3 +128,36 @@ export const onBioDelete = functions.https.onRequest((req, res) => {
 export const onMLDelete = functions.https.onRequest((req, res) => {
 
 });
+
+//  Helpers
+
+//  Checks if BioMetric data is in a valid JSON format
+const checkValidData = (data: BioData): boolean => {
+  if(isNumber(data.userid)){
+    if(isNumber(data.time)){
+      let metrics = data.metrics;
+      if(isArray(metrics.gsr)){
+        if(isArray(metrics.temp)){
+          if(isArray(metrics.hr)){
+            return true;
+          }
+          else {
+            return false;
+          }
+        }
+        else {
+          return false;
+        }
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }
+  }
+  else {
+    return false;
+  }
+};

@@ -15,8 +15,18 @@
     "firebase-functions": "^2.1.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "https": "^1.0.0",
+    "mocha": "^5.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
+    "request-promise-native": "^1.0.5",
+    "ts-node": "^7.0.1",
     "tslint": "~5.8.0",
-    "typescript": "~2.8.3"
+    "typescript": "~2.8.3",
+    "web-request": "^1.0.7"
   },
   "private": true
 }

@@ -91,7 +91,7 @@ describe('Testing cloud functions for the BioAPI locally...', () => {
   });
 
   it('Test biometric store, invalid data', () => {
-    let newData = JSON.stringify({
+    let newData = {
       userID: 6243819361,
       metrics: {
         hr: [89, 72, 77, 75,78],
@@ -99,8 +99,8 @@ describe('Testing cloud functions for the BioAPI locally...', () => {
         temp: 12
       },
       time: 5
-    });
-    WebRequest.post(addBioURLRemote, null, newData)
+    };
+    WebRequest.post(addBioURLRemote, {json: true}, newData)
       .then(value => {
         console.log(value.statusCode);
         console.log(value.message);

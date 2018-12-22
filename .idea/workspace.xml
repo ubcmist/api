@@ -191,7 +191,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Mocha.Testing cloud functions for the BioAPI locally....Test biometric store remote, new user">
+  <component name="RunManager" selected="Mocha.Testing cloud functions for the BioAPI locally....Test biometric store, invalid data">
     <configuration name="Testing cloud functions for the BioAPI locally....Check data, valid data" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -271,8 +271,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Test biometric store remote, new user" />
         <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Test biometric store, invalid data" />
+        <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Test biometric store remote, new user" />
         <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Test biometric store local, new user (1)" />
         <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Check data, valid data" />
         <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Test biometric store, existing user" />

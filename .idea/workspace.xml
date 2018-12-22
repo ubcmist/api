@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5aee5531-4961-464d-b167-900f45b0d499" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/functions/tests/tests.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.firebaserc" beforeDir="false" afterPath="$PROJECT_DIR$/.firebaserc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/functions/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions/tests/tests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/tests/tests.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -68,8 +62,8 @@
       <file leaf-file-name="tests.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/functions/tests/tests.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="46" column="15" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
+            <state relative-caret-position="450">
+              <caret line="53" column="6" lean-forward="true" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -297,20 +291,11 @@
       <updated>1542231358628</updated>
       <workItem from="1542231360708" duration="1416000" />
       <workItem from="1545073059756" duration="13495000" />
-      <workItem from="1545432277853" duration="8706000" />
+      <workItem from="1545432277853" duration="8891000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Check_data,_valid_data - 2018.12.21 at 17h 08m 10s.xml">
-      <configuration name="Testing cloud functions for the BioAPI locally....Check data, valid data" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Check_data,_valid_data - 2018.12.21 at 17h 08m 59s.xml">
-      <configuration name="Testing cloud functions for the BioAPI locally....Check data, valid data" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Check_data,_valid_data - 2018.12.21 at 17h 09m 28s.xml">
-      <configuration name="Testing cloud functions for the BioAPI locally....Check data, valid data" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
     <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user_(1) - 2018.12.21 at 17h 11m 04s.xml">
       <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user (1)" configurationId="mocha-javascript-test-runner" />
     </history-entry>
@@ -332,9 +317,18 @@
     <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store,_invalid_data - 2018.12.21 at 17h 16m 06s.xml">
       <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store, invalid data" configurationId="mocha-javascript-test-runner" />
     </history-entry>
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_remote,_new_user - 2018.12.21 at 17h 17m 53s.xml">
+      <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store remote, new user" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_remote,_new_user - 2018.12.21 at 17h 19m 24s.xml">
+      <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store remote, new user" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_remote,_new_user - 2018.12.21 at 17h 19m 50s.xml">
+      <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store remote, new user" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23617000" />
+    <option name="totallyTimeSpent" value="23802000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -476,8 +470,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/functions/tests/tests.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="46" column="15" selection-start-line="46" selection-start-column="15" selection-end-line="46" selection-end-column="15" />
+        <state relative-caret-position="450">
+          <caret line="53" column="6" lean-forward="true" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>

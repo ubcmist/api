@@ -24,7 +24,7 @@ interface Metrics{
 }
 
 interface BioData {
-  userid: number;
+  userID: number;
   metrics: Metrics;
   time:number
 }
@@ -52,44 +52,29 @@ const db = admin.firestore();
 export const onBioStore = functions.https.onRequest((req, res) => {
   let data: BioData = req.body;
   if(data === null){
-    res.send({
-      code: 401,
-      body: 'No valid data'
-    });
+    res.sendStatus(400);
   }
   else{
     if(checkValidData(data)){
-      let doc = db.collection('biometrics').doc(data.userid);
+      let doc = db.collection('biometrics').doc(String(data.userID));
       doc.get()
         .then((dbdoc) => {
           if(!dbdoc.exists){
             doc.set({metrics: data.metrics, time: data.time});
-            res.send({
-              code: 200,
-              body: "Success! Created new data!"
-            });
+            res.sendStatus(201);
           }
           else{
             doc.update({metrics: data.metrics, time: data.time});
-            res.send({
-              code: 201,
-              body: "Success! Updated data!"
-            });
+            res.sendStatus(205);
           }
         })
         .catch((err) => {
           console.log("\nError occurred: " + err)
-          res.send({
-            code: 402,
-            body: err
-          });
+          res.sendStatus(400);
         });
     }
     else{
-      res.send({
-        code: 403,
-        body: "Invalid data!"
-      });
+      res.sendStatus(400);
     }
   }
 });
@@ -132,10 +117,10 @@ export const onMLDelete = functions.https.onRequest((req, res) => {
 //  Helpers
 
 //  Checks if BioMetric data is in a valid JSON format
-const checkValidData = (data: BioData): boolean => {
-  if(isNumber(data.userid)){
+export const checkValidData = (data: BioData): boolean => {
+  if(isNumber(data.userID)){
     if(isNumber(data.time)){
-      let metrics = data.metrics;
+      let metrics: Metrics = data.metrics;
       if(isArray(metrics.gsr)){
         if(isArray(metrics.temp)){
           if(isArray(metrics.hr)){

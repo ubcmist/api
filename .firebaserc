@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "biosignal-e309a"
+    "default": "biosignal-e309a",
+    "bioAPI": "biosignal-e309a"
   }
 }

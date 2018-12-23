@@ -3,6 +3,7 @@ import 'mocha';
 import * as WebRequest from 'web-request';
 import * as lib from '../src/index';
 import * as Promise from 'bluebird';
+import { generateNewUserID } from '../src/index';
 
 describe('Testing cloud functions for the BioAPI locally...', () => {
 
@@ -10,6 +11,8 @@ describe('Testing cloud functions for the BioAPI locally...', () => {
   const addBioURLRemote = 'https://us-central1-biosignal-e309a.cloudfunctions.net/onBioStore';
   const getBioURL = 'http://localhost:5000/biosignal-e309a/us-central1/onBioGet';
   const getBioURLRemote = '';
+  const deleteBioUrl = 'http://localhost:5000/biosignal-e309a/us-central1/onBioDelete';
+  const genUserIDURL = 'http://localhost:5000/biosignal-e309a/us-central1/generateNewUserID'
 
   it('Check data, valid data', () => {
     let newData = {
@@ -197,4 +200,87 @@ describe('Testing cloud functions for the BioAPI locally...', () => {
         expect.fail(err1);
       });
   });
+
+  it("Delete valid user", () => {
+    let userQuery = {
+      userID: 6243819331
+    };
+    return new Promise((resolve, reject) => {
+      WebRequest.post(deleteBioUrl, {json:true}, userQuery)
+        .then(value => {
+          expect(value.statusCode).to.equals(200);
+          resolve(value);
+        })
+        .catch(err => {
+          reject(err);
+        })})
+      .then((val) => {
+        expect(val).to.equals(val);
+      })
+      .catch(err1 => {
+        expect.fail(err1);
+      });
+  });
+
+  it("Delete invalid user from firestore, invalid userID", () => {
+    let userQuery = {
+      userID: 44444
+    };
+    return new Promise((resolve, reject) => {
+      WebRequest.post(deleteBioUrl, {json:true}, userQuery)
+        .then(value => {
+          expect.fail(value);
+          reject(value);
+        })
+        .catch(err => {
+          resolve(err);
+        })})
+      .then((val) => {
+        expect(val).to.equals(val);
+      })
+      .catch(err1 => {
+        expect.fail(err1);
+      });
+  });
+
+  it("Delete invalid user from firestore, non-existent user", () => {
+    let userQuery = {
+      userID: 4444444444
+    };
+    return new Promise((resolve, reject) => {
+      WebRequest.post(deleteBioUrl, {json:true}, userQuery)
+        .then(value => {
+          expect(value.statusCode).to.equals(200);
+          resolve(value);
+        })
+        .catch(err => {
+          reject(err);
+        })})
+      .then((val) => {
+        expect(val).to.equals(val);
+      })
+      .catch(err1 => {
+        expect.fail(err1);
+      });
+  });
+
+  it("Generate new userID", () => {
+    return new Promise((resolve, reject) => {
+      WebRequest.post(genUserIDURL)
+        .then(value => {
+          console.log(value.message['body']);
+          expect(value.statusCode).to.equals(200);
+          resolve(value);
+        })
+        .catch(err => {
+          reject(err);
+        })})
+      .then((val) => {
+        expect(val).to.equals(val);
+      })
+      .catch(err1 => {
+        expect.fail(err1);
+      });
+  });
+
 });

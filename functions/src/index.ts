@@ -121,7 +121,51 @@ export const onBioGet = functions.https.onRequest((req, res) => {
 *   **biometric** data from the MIST database.
 */
 export const onBioDelete = functions.https.onRequest((req, res) => {
+  let query: UserIDQuery = req.body;
+  if(checkValidUserID(query.userID)){
+    let doc = db.collection(biometricsQuery).doc(String(query.userID)).delete();
+    res.sendStatus(200);
+  }
+  else {
+    res.sendStatus(400);
+  }
+});
 
+/*  This function generates a new and unique 10-digit userID
+*/
+export const generateNewUserID = functions.https.onRequest((req, res) => {
+  let exists: boolean = false;
+  let col = db.collection(biometricsQuery).get()
+    .then(docs => {
+      if(docs.empty){
+        res.send({
+          userID: Math.floor(1000000000 + Math.random() * 9000000000)
+        });
+      }
+      else{
+        let newID: number = Math.floor(1000000000 + Math.random() * 9000000000);
+        docs.forEach(doc => {
+          if(newID == doc.id){
+            exists = true;
+          }
+        });
+        while(exists){
+          newID = Math.floor(1000000000 + Math.random() * 9000000000);
+          exists = false;
+          docs.forEach(doc => {
+            if(newID == doc.id){
+              exists = true;
+            }
+          });
+        }
+        res.send({
+          userID: newID
+        });
+      }
+    })
+    .catch(err => {
+      res.sendStatus(400);
+    });
 });
 
 /*  This function is called with the **ML snapshot** in JSON format as an

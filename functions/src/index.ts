@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import { isArray, isNumber } from 'util';
 
-//Sample BioMetric JSON
+//  Sample BioMetric JSON
 const sampleBioData = {
   userID: 6243819361,
   metrics: {
@@ -12,11 +12,12 @@ const sampleBioData = {
   time: 5
 };
 
-//Sample ML JSON
+//  Sample ML JSON
 const sampleMLData = {
   snapshot: [[],[],[]]
 };
 
+//  Data interfaces
 interface Metrics{
   hr: Array<number>;
   gsr: Array<number>;
@@ -39,12 +40,21 @@ interface dbBioData {
   time: number;
 }
 
-//Initialize firestore
+interface UserIDQuery {
+  userID: number;
+}
+
+//  Initialize firestore
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 const db = admin.firestore();
 
-//Add cloud functions here
+//  Constants
+const biometricsQuery: string = 'biometrics';
+const metricsQuery: string = 'metrics';
+const timeQuery: string = 'time';
+
+//  Add all cloud functions here
 
 /*  This function is called with the **biometric** data JSON as an argument.
 *   This data will be stored on the MIST database.
@@ -56,7 +66,7 @@ export const onBioStore = functions.https.onRequest((req, res) => {
   }
   else{
     if(checkValidData(data)){
-      let doc = db.collection('biometrics').doc(String(data.userID));
+      let doc = db.collection(biometricsQuery).doc(String(data.userID));
       doc.get()
         .then((dbdoc) => {
           if(!dbdoc.exists){
@@ -69,7 +79,6 @@ export const onBioStore = functions.https.onRequest((req, res) => {
           }
         })
         .catch((err) => {
-          console.log("\nError occurred: " + err)
           res.sendStatus(400);
         });
     }
@@ -77,6 +86,86 @@ export const onBioStore = functions.https.onRequest((req, res) => {
       res.sendStatus(400);
     }
   }
+});
+
+/*  This function is called with a unique 10-digit userID to retrieve
+*   **biometric** data for that user.
+*/
+export const onBioGet = functions.https.onRequest((req, res) => {
+  let query: UserIDQuery = req.body;
+  if(checkValidUserID(query.userID)){
+    let doc = db.collection(biometricsQuery).doc(String(query.userID));
+    doc.get()
+      .then((dbdoc) => {
+        if(!dbdoc.exists){
+          res.sendStatus(404);
+        }
+        else{
+          res.send({
+            userID: query.userID,
+            metrics: dbdoc.data()[metricsQuery],
+            time: dbdoc.data()[timeQuery]
+          });
+        }
+      })
+      .catch((err) => {
+        res.sendStatus(400);
+      });
+  }
+  else {
+    res.sendStatus(400);
+  }
+});
+
+/*  This function is called with a unique 10-digit userID to delete a user's
+*   **biometric** data from the MIST database.
+*/
+export const onBioDelete = functions.https.onRequest((req, res) => {
+  let query: UserIDQuery = req.body;
+  if(checkValidUserID(query.userID)){
+    let doc = db.collection(biometricsQuery).doc(String(query.userID)).delete();
+    res.sendStatus(200);
+  }
+  else {
+    res.sendStatus(400);
+  }
+});
+
+/*  This function generates a new and unique 10-digit userID
+*/
+export const generateNewUserID = functions.https.onRequest((req, res) => {
+  let exists: boolean = false;
+  let col = db.collection(biometricsQuery).get()
+    .then(docs => {
+      if(docs.empty){
+        res.send({
+          userID: Math.floor(1000000000 + Math.random() * 9000000000)
+        });
+      }
+      else{
+        let newID: number = Math.floor(1000000000 + Math.random() * 9000000000);
+        docs.forEach(doc => {
+          if(newID == doc.id){
+            exists = true;
+          }
+        });
+        while(exists){
+          newID = Math.floor(1000000000 + Math.random() * 9000000000);
+          exists = false;
+          docs.forEach(doc => {
+            if(newID == doc.id){
+              exists = true;
+            }
+          });
+        }
+        res.send({
+          userID: newID
+        });
+      }
+    })
+    .catch(err => {
+      res.sendStatus(400);
+    });
 });
 
 /*  This function is called with the **ML snapshot** in JSON format as an
@@ -87,23 +176,9 @@ export const onMLStore = functions.https.onRequest((req, res) => {
 });
 
 /*  This function is called with a unique 10-digit userID to retrieve
-*   **biometric** data for that user.
-*/
-export const onBioGet = functions.https.onRequest((req, res) => {
-
-});
-
-/*  This function is called with a unique 10-digit userID to retrieve
 *   **ML snapshot** data for that user.
 */
 export const onMLGet = functions.https.onRequest((req, res) => {
-
-});
-
-/*  This function is called with a unique 10-digit userID to delete a user's
-*   **biometric** data from the MIST database.
-*/
-export const onBioDelete = functions.https.onRequest((req, res) => {
 
 });
 
@@ -145,4 +220,9 @@ export const checkValidData = (data: BioData): boolean => {
   else {
     return false;
   }
+};
+
+//  Checks is userID is in valid 10-digit range
+export const checkValidUserID = (userID: number): boolean => {
+  return (userID >= 1000000000 && userID <= 9999999999)
 };

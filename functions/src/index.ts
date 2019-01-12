@@ -168,6 +168,27 @@ export const generateNewUserID = functions.https.onRequest((req, res) => {
     });
 });
 
+/*  This function gets biodata history for user that has been persisted in
+*   firestore
+* */
+export const getBioHist = functions.https.onRequest((req, res) => {
+
+});
+
+/*  This function updates biodata history if it exists in firestore, otherwise
+*   it creates a new document with user data
+*/
+export const appendToBioHist = functions.https.onRequest((req, res) => {
+
+});
+
+/*  This function deletes a user's biodata history from the firestore collection
+*
+* */
+export const delBioHist = functions.https.onRequest((req, res) => {
+
+});
+
 /*  This function is called with the **ML snapshot** in JSON format as an
 *   argument. This data will be stored on the MIST database.
 */

@@ -171,21 +171,21 @@ export const generateNewUserID = functions.https.onRequest((req, res) => {
 /*  This function gets biodata history for user that has been persisted in
 *   firestore
 * */
-export const getBioHist = functions.https.onRequest((req, res) => {
+export const onBioHistGet = functions.https.onRequest((req, res) => {
 
 });
 
 /*  This function updates biodata history if it exists in firestore, otherwise
 *   it creates a new document with user data
 */
-export const appendToBioHist = functions.https.onRequest((req, res) => {
+export const onBioHistStore = functions.https.onRequest((req, res) => {
 
 });
 
 /*  This function deletes a user's biodata history from the firestore collection
 *
 * */
-export const delBioHist = functions.https.onRequest((req, res) => {
+export const onBioHistDel = functions.https.onRequest((req, res) => {
 
 });
 

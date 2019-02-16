@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5aee5531-4961-464d-b167-900f45b0d499" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/tests/tests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/functions/tests/tests.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,23 +16,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name=".firebaserc" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.firebaserc">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="index.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/functions/src/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-230">
-              <caret line="30" column="25" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="25" />
+            <state relative-caret-position="1486">
+              <caret line="145" column="19" lean-forward="true" selection-start-line="145" selection-start-column="19" selection-end-line="145" selection-end-column="19" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
@@ -58,11 +56,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tests.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package-lock.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/functions/package-lock.json">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="tests.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/functions/tests/tests.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+            <state relative-caret-position="396">
+              <caret line="22" column="23" lean-forward="true" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -115,8 +118,8 @@
         <option value="$PROJECT_DIR$/functions/tslint.json" />
         <option value="$PROJECT_DIR$/functions/tests/testsDeployed.ts" />
         <option value="$PROJECT_DIR$/functions/package.json" />
-        <option value="$PROJECT_DIR$/functions/src/index.ts" />
         <option value="$PROJECT_DIR$/functions/tests/tests.ts" />
+        <option value="$PROJECT_DIR$/functions/src/index.ts" />
       </list>
     </option>
   </component>
@@ -208,7 +211,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Mocha.Testing cloud functions for the BioAPI locally....Test biometric store local, new user">
-    <configuration name="Testing cloud functions for the BioAPI locally....Delete invalid user from firestore, invalid userID" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
+    <configuration name="Testing cloud functions for the BioAPI locally....Check data, valid data" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
       <node-interpreter>project</node-interpreter>
       <node-options />
       <working-directory>$PROJECT_DIR$</working-directory>
@@ -219,7 +222,7 @@
       <test-file>$PROJECT_DIR$/functions/tests/tests.ts</test-file>
       <test-names>
         <name value="Testing cloud functions for the BioAPI locally..." />
-        <name value="Delete invalid user from firestore, invalid userID" />
+        <name value="Check data, valid data" />
       </test-names>
     </configuration>
     <configuration name="Testing cloud functions for the BioAPI locally....Delete invalid user from firestore, non-existent user" type="mocha-javascript-test-runner" factoryName="Mocha" temporary="true" nameIsGenerated="true">
@@ -280,18 +283,18 @@
     </configuration>
     <list>
       <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Test biometric store local, new user" />
-      <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Delete invalid user from firestore, invalid userID" />
       <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Delete invalid user from firestore, non-existent user" />
       <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Generate new userID" />
       <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Get valid user data from firestore" />
+      <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Check data, valid data" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Test biometric store local, new user" />
+        <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Check data, valid data" />
         <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Get valid user data from firestore" />
         <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Generate new userID" />
         <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Delete invalid user from firestore, non-existent user" />
-        <item itemvalue="Mocha.Testing cloud functions for the BioAPI locally....Delete invalid user from firestore, invalid userID" />
       </list>
     </recent_temporary>
   </component>
@@ -312,44 +315,44 @@
       <workItem from="1547320450119" duration="2291000" />
       <workItem from="1548529430453" duration="607000" />
       <workItem from="1549739791315" duration="1584000" />
-      <workItem from="1550268490312" duration="1922000" />
+      <workItem from="1550268490312" duration="9316000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Generate_new_userID - 2018.12.22 at 16h 18m 30s.xml">
-      <configuration name="Testing cloud functions for the BioAPI locally....Generate new userID" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Generate_new_userID - 2018.12.22 at 16h 18m 32s.xml">
-      <configuration name="Testing cloud functions for the BioAPI locally....Generate new userID" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Generate_new_userID - 2018.12.22 at 16h 18m 34s.xml">
-      <configuration name="Testing cloud functions for the BioAPI locally....Generate new userID" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Generate_new_userID - 2018.12.22 at 16h 18m 36s.xml">
-      <configuration name="Testing cloud functions for the BioAPI locally....Generate new userID" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Generate_new_userID - 2018.12.22 at 16h 18m 38s.xml">
-      <configuration name="Testing cloud functions for the BioAPI locally....Generate new userID" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Get_valid_user_data_from_firestore - 2019.01.05 at 11h 26m 07s.xml">
-      <configuration name="Testing cloud functions for the BioAPI locally....Get valid user data from firestore" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Get_valid_user_data_from_firestore - 2019.01.05 at 11h 26m 15s.xml">
-      <configuration name="Testing cloud functions for the BioAPI locally....Get valid user data from firestore" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.15 at 14h 14m 11s.xml">
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.16 at 12h 31m 02s.xml">
       <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.15 at 14h 16m 16s.xml">
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.16 at 12h 31m 12s.xml">
       <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user" configurationId="mocha-javascript-test-runner" />
     </history-entry>
-    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.15 at 14h 22m 09s.xml">
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.16 at 12h 32m 01s.xml">
+      <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.16 at 12h 32m 04s.xml">
+      <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.16 at 12h 33m 22s.xml">
+      <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.16 at 12h 34m 59s.xml">
+      <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.16 at 12h 35m 03s.xml">
+      <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.16 at 12h 36m 06s.xml">
+      <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.16 at 12h 46m 11s.xml">
+      <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
+    <history-entry file="Testing_cloud_functions_for_the_BioAPI_locally____Test_biometric_store_local,_new_user - 2019.02.16 at 12h 48m 45s.xml">
       <configuration name="Testing cloud functions for the BioAPI locally....Test biometric store local, new user" configurationId="mocha-javascript-test-runner" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47021000" />
+    <option name="totallyTimeSpent" value="54415000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -388,19 +391,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="252">
-            <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/functions/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -606,13 +596,6 @@
     <entry file="file://$PROJECT_DIR$/firebase.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/functions/lib/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -631,20 +614,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions/src/index.ts">
+    <entry file="file://$PROJECT_DIR$/functions/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-230">
-          <caret line="30" column="25" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="25" />
+        <state relative-caret-position="342">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/functions/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/functions/tests/tests.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+        <state relative-caret-position="396">
+          <caret line="22" column="23" lean-forward="true" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1486">
+          <caret line="145" column="19" lean-forward="true" selection-start-line="145" selection-start-column="19" selection-end-line="145" selection-end-column="19" />
         </state>
       </provider>
     </entry>

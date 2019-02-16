@@ -14,7 +14,7 @@ const sampleBioData = {
   time: 5
 };
 
-const maxHistory = 10;
+const maxHistory = 10000;
 
 //  Sample ML JSON
 const sampleMLData = {
@@ -42,7 +42,7 @@ interface BioData {
   time:number
 }
 
-interface Response{
+interface Response {
   code: number;
   body: any
 }
@@ -74,57 +74,84 @@ const timeQuery: string = 'time';
 */
 export const onBioStore = functions.https.onRequest((req, res) => {
   let data: BioData = req.body;
-  if(data === null){
+  if (data === null) {
     res.sendStatus(400);
   }
-  else{
-    if(checkValidData(data)){
+  else {
+    if (checkValidData(data)) {
       let doc = db.collection(biometricsQuery).doc(String(data.userID));
       doc.get()
         .then((dbdoc) => {
-          let newDat: dbBioData = {metrics: data.metrics, time: data.time};
-          if(!dbdoc.exists){
+          let newDat: dbBioData = { metrics: data.metrics, time: data.time };
+          if (!dbdoc.exists) {
             doc.set(newDat);
+            res.sendStatus(200);
           }
-          else{
+          else {
             doc.update(newDat);
+            res.sendStatus(201);
           }
           let histDoc = db.collection(biometricsHistQuery).doc(String(data.userID));
-          histDoc.get()
-            .then((dbhistdoc) => {
-              let newHistDat = [newDat];
-              if(!dbhistdoc.exists){
-                histDoc.set(newHistDat);
+          return db.runTransaction((t) => {
+            return t.get(histDoc).then((doc) => {
+              // doc doesn't exist; can't update
+              if (!doc.exists) {
+                let newHistDat = { hist: [newDat] };
+                t.set(histDoc, newHistDat, { merge: true });
                 res.sendStatus(200);
               }
-              else{
-                let newArr: Array<dbBioData> = dbhistdoc;
-                if(newArr.length == maxHistory){
-                  let newHistArr: Array<dbBioData> = [];
-                  for(let i = 1; i < maxHistory; i++) {
-                    newHistArr.push(newArr[i]);
+              else {
+                // update the array after getting it from Firestore.
+                let newArray = doc.get('hist').push(newDat);
+                let newFinalArray = newArray;
+                if (newArray.length > maxHistory) {
+                  newFinalArray = [];
+                  for (let i = 0; i < maxHistory; i++) {
+                    newFinalArray.push(newArray[i + 1]);
                   }
-                  newHistArr.push(newDat);
-                  histDoc.set(newHistArr);
-                  res.sendStatus(201);
                 }
-                else{
-                  newArr.push(newDat);
-                  histDoc.set(newArr);
-                  res.sendStatus(201);
-                }
+                t.set(histDoc, { hist: newArray }, { merge: true });
               }
             })
-            .catch((err) => {
-              res.sendStatus(500);
-            });
+              .catch((err) => {
+                res.sendStatus(500);
+              });
+            /*histDoc.get()
+              .then((dbhistdoc) => {
+                let newHistDat = {hist: [newDat]};
+                if(!dbhistdoc.exists){
+                  histDoc.set(newHistDat);
+                  res.sendStatus(200);
+                }
+                else{
+                  let newArr: Array<dbBioData> = dbhistdoc;
+                  if(newArr.length == maxHistory){
+                    let newHistArr: Array<dbBioData> = [];
+                    for(let i = 1; i < maxHistory; i++) {
+                      newHistArr.push(newArr[i]);
+                    }
+                    newHistArr.push(newDat);
+                    histDoc.set(newHistArr);
+                    res.sendStatus(201);
+                  }
+                  else{
+                    newArr.push(newDat);
+                    histDoc.set(newArr);
+                    res.sendStatus(201);
+                  }
+                }
+              })
+              .catch((err) => {
+                res.sendStatus(500);
+              });*/
+          })
         })
         .catch((err) => {
           res.sendStatus(500);
         });
     }
     else{
-      res.sendStatus(400);
+        res.sendStatus(400);
     }
   }
 });

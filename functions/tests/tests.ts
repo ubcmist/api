@@ -33,9 +33,12 @@ describe('Testing cloud functions for the BioAPI locally...', () => {
       metrics: {
         hr: [89, 72, 77, 75,78],
         gsr: [100, 102, 105, 109, 88],
-        temp: [36, 37, 37, 36, 37]
+        temp: [36, 37, 37, 36, 37],
+        pedometer: 55,
+        locSnap: [{lat: 44, lon: 66}],
+        userAssessedStressLevel: 5
       },
-      time: 5
+      time: 9
     };
     return new Promise((resolve, reject) => {
       WebRequest.post(addBioURL, {json: true}, newData)

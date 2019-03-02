@@ -8,7 +8,7 @@ const sampleBioData = {
     hr: [89, 72, 77, 75,78],
     gsr: [100, 102, 105, 109, 88],
     locSnap: [{lat: 0, lon: 0}, {lat: 1, lon: 1}],
-    numSteps: 300,
+    pedometer: 300,
     temp: [36, 37, 37, 36, 37]
   },
   time: 5
@@ -79,76 +79,52 @@ export const onBioStore = functions.https.onRequest((req, res) => {
   }
   else {
     if (checkValidData(data)) {
+      let newDat: dbBioData = { metrics: data.metrics, time: data.time };
       let doc = db.collection(biometricsQuery).doc(String(data.userID));
       doc.get()
         .then((dbdoc) => {
           let newDat: dbBioData = { metrics: data.metrics, time: data.time };
           if (!dbdoc.exists) {
             doc.set(newDat);
-            res.sendStatus(200);
           }
           else {
             doc.update(newDat);
-            res.sendStatus(201);
           }
           let histDoc = db.collection(biometricsHistQuery).doc(String(data.userID));
-          return db.runTransaction((t) => {
-            return t.get(histDoc).then((doc) => {
-              // doc doesn't exist; can't update
-              if (!doc.exists) {
-                let newHistDat = { hist: [newDat] };
-                t.set(histDoc, newHistDat, { merge: true });
-                res.sendStatus(200);
-              }
-              else {
-                // update the array after getting it from Firestore.
-                let newArray = doc.get('hist').push(newDat);
-                let newFinalArray = newArray;
-                if (newArray.length > maxHistory) {
-                  newFinalArray = [];
-                  for (let i = 0; i < maxHistory; i++) {
-                    newFinalArray.push(newArray[i + 1]);
-                  }
-                }
-                t.set(histDoc, { hist: newArray }, { merge: true });
-              }
-            })
-              .catch((err) => {
-                res.sendStatus(500);
-              });
-            /*histDoc.get()
+          histDoc.get()
               .then((dbhistdoc) => {
-                let newHistDat = {hist: [newDat]};
                 if(!dbhistdoc.exists){
+                  let newHistDat = {bioHist: {hist: [newDat]}};
                   histDoc.set(newHistDat);
-                  res.sendStatus(200);
+                  res.sendStatus(201);
                 }
                 else{
-                  let newArr: Array<dbBioData> = dbhistdoc;
-                  if(newArr.length == maxHistory){
-                    let newHistArr: Array<dbBioData> = [];
+                  let bioHist = dbhistdoc.get('bioHist')
+                  let newArr: Array<dbBioData> = bioHist['hist'];
+                  let newHistArr: Array<dbBioData> = newArr;
+                  if(newArr.length >= maxHistory){
+                    newHistArr = [];
                     for(let i = 1; i < maxHistory; i++) {
                       newHistArr.push(newArr[i]);
                     }
                     newHistArr.push(newDat);
-                    histDoc.set(newHistArr);
-                    res.sendStatus(201);
+                    histDoc.set({bioHist: {hist: newHistArr}});
+                    res.sendStatus(205);
                   }
                   else{
                     newArr.push(newDat);
-                    histDoc.set(newArr);
-                    res.sendStatus(201);
+                    histDoc.set({bioHist: {hist: newArr}});
+                    res.sendStatus(205);
                   }
                 }
               })
               .catch((err) => {
                 res.sendStatus(500);
-              });*/
+              });
           })
-        })
-        .catch((err) => {
-          res.sendStatus(500);
-        });
+          .catch((err) => {
+            res.sendStatus(500);
+          });
     }
     else{
         res.sendStatus(400);
@@ -251,8 +227,7 @@ export const onBioHistGet = functions.https.onRequest((req, res) => {
         else{
           res.send({
             userID: query.userID,
-            metrics: dbdoc.data()[metricsQuery],
-            time: dbdoc.data()[timeQuery]
+            hist: dbdoc.data()['bioHist']
           });
         }
       })
@@ -309,7 +284,7 @@ export const checkValidData = (data: any): boolean => {
       let metrics: Metrics = data.metrics;
       if(isArray(metrics.gsr)){
         if(isArray(metrics.temp)){
-          if(isArray(metrics.hr)){
+          if(isArray(metrics.hr)){ 
             return true;
           }
           else {

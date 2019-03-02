@@ -20,8 +20,10 @@ There are 6 different database functions. The mobile application and ML server r
 - `onBioStore` - This function is called with the **biometric** data JSON as an argument. This data will be stored on the MIST database. Sends response codes `201` if a new user is created in the database, `205` if an existing user's data is updated, and `400` if data sent is invalid.
 - `onMLStore` - This function is called with the **ML snapshot** in JSON format as an argument. This data will be stored on the MIST database.
 - `onBioGet` - This function is called with a unique 10-digit userID to retrieve **biometric** data for that user. Sends response codes `200` if data is successfully retrieved, `404` if user with sent `userID` was not found, and `400` for invalid `userID` sent to the server.
+- `onBioHistGet` - This function is called with a unique 10-digit userID to retrieve **biometric history** data for that user. Sends response codes `200` if data is successfully retrieved, `404` if user with sent `userID` was not found, and `400` for invalid `userID` sent to the server.
 - `onMLGet` - This function is called with a unique 10-digit userID to retrieve **ML snapshot** data for that user.
 - `onBioDelete` - This function is called with a unique 10-digit userID to delete a user's **biometric** data from the MIST database. Sends response codes `200` if user data was successfully deleted from firestore, and `400` if an invalid `userID` was sent to the server.
+- `onBioHistDelete` - This function is called with a unique 10-digit userID to delete a user's **biometric history** data from the MIST database. Sends response codes `200` if user data was successfully deleted from firestore, and `400` if an invalid `userID` was sent to the server.
 - `onMLDelete` - This function is called with a unique 10-digit userID to delete a user's **ML snapshot** data from the MIST database.
 ## Other Utilities
 These functions provide services that help integrate the API's usage with the mobile application. Current functions included in this section are
